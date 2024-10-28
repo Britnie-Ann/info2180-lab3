@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
             spaces[index] = currentPlayer
 
             if (currentPlayer == Xtext){
-                Xtext.className = "square X"
+                e.target.innerText.className = "square X"
                 currentPlayer = Otext
             }
             else if (currentPlayer == Otext){
@@ -38,9 +38,27 @@ document.addEventListener("DOMContentLoaded", function() {
                 currentPlayer = Xtext
             }
         }
-}
+    }
 
-squares.forEach(square => {
-    square.addEventListener('click', selectedSquare)}
+    //Hovering over squares
+    function HoverOverSQ(e) {
+        const square = e.target
+        const index = Array.from(squares).indexOf(square)
+
+        if (!spaces[index]){
+            square.classList.add('hover');
+
+            square.addEventListener('mouseleave', () => {
+                square.classList.remove('hover'); })
+        }
+    }
+
+
+
+squares.forEach((square) => {
+    square.addEventListener('click', selectedSquare)
+    square.addEventListener("mouseover", HoverOverSQ)
+}
 )
-});
+
+})
